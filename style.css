@@ -1,0 +1,142 @@
+body {
+    background: url('./src/assets/home.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.ancients-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 10px;
+}
+
+.ancient-card {
+    background-size: 100%; 
+    background-repeat: no-repeat;
+    width: 270px;
+    height: 350px;
+}
+
+.activeBoss {
+    border: 2px solid red;
+    transform: scale(1.1);
+}
+
+.bottom-container {
+    display: flex;
+    padding-top: 40px;
+}
+
+.dificulties-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.didificult{
+    width: 150px;
+    height: 30px;
+}
+.chose-didificult {
+    border: 2px solid red;
+    transform: scale(1.1);
+}
+
+.hide-dificulties-container {
+    opacity: 0;
+}
+
+.deck-container {
+    display: flex;
+    flex-grow: 4;
+    position: relative;
+}
+
+.mix-up {
+    height: 30px;
+    width: 200px;
+    align-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 3;
+}
+
+.hide-mix-up {
+    display: none;
+}
+
+.card-container {
+    display: flex;
+    position: relative;
+}
+
+.cardWrapper {
+    width: 210px;
+    height: 350px;
+    position: absolute;
+    transition: 1s;
+}
+
+.cardWrapperOpen {
+     transform: translateX(210px);
+     transition: 1s;
+     
+}
+
+.hide-card-container {
+    opacity: 0;
+}
+
+.card {
+    height: 350px;
+    width: 210px;
+}
+
+.backside {
+    background: url(./src/assets/mythicCardBackground.jpg);
+    background-size: 100%;
+    position: absolute;
+    z-index: 2;
+    transition: 1s;
+}
+
+.front-side {
+    background-color: aqua;
+    transform: rotateY(-180deg);
+    position: absolute;
+    z-index: 1;
+    transition: 1s;
+}
+
+.hide-backside {
+    transform: rotateY(-180deg);
+    transition: 1s;
+    z-index: 1;
+}
+
+.show-front-side {
+    transform: rotateY(0deg);
+    transition: 1s;
+    z-index: 2;
+}
+
+.stage-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.hide-stage-container {
+    opacity: 0;
+}
