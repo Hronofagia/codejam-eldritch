@@ -26,7 +26,7 @@ body {
 }
 
 .activeBoss {
-    border: 2px solid red;
+    border: 2px solid #5B1C02;
     transform: scale(1.1);
 }
 
@@ -41,13 +41,17 @@ body {
     flex-grow: 1;
     align-items: center;
 }
+.dificult-text{
+    text-align: center;
+    color: #D25B01;
+}
 
 .didificult{
     width: 150px;
     height: 30px;
 }
 .chose-didificult {
-    border: 2px solid red;
+    border: 2px solid #5B1C02;
     transform: scale(1.1);
 }
 
@@ -140,3 +144,40 @@ body {
 .hide-stage-container {
     opacity: 0;
 }
+
+.stage {
+    display: flex;
+    flex-direction: column;
+}
+
+.stage-text {
+    text-align: center;
+    color: #D25B01;
+
+}
+
+.circle-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.circle {
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+}
+
+.greenCircle {
+    background-color: #807622;
+}
+
+.brownCircle {
+    background-color: #EAA724;
+}
+
+.blueCircle {
+    background-color: #2A3759;
+}
+

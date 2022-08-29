@@ -13,11 +13,21 @@ const veryHard = document.getElementById('very-hard')
 const backside = document.querySelector('.backside')
 const frontSide = document.querySelector('.front-side')
 const mixUp = document.querySelector('.mix-up')
-
 const cardContainer = document.querySelector('.card-container')
 const cardBackside = document.querySelector('.backside')
 const cardFrontside = document.querySelector('.front-side')
 const stageContainer = document.querySelector('.stage-container')
+const firstGreen = document.getElementById('first-green')
+const firstBrown = document.getElementById('first-brown')
+const firstBlue = document.getElementById('first-blue')
+const secondGreen = document.getElementById('second-green')
+const secondBrown = document.getElementById('second-brown')
+const secondBlue = document.getElementById('second-blue')
+const thirdGreen = document.getElementById('third-green')
+const thirdBrown = document.getElementById('third-brown')
+const thirdBlue = document.getElementById('third-blue')
+
+
 
 let finalPack = []
 
@@ -33,6 +43,18 @@ const bossCards = ancientsData.map(el => createHtmlEl('div', 'ancient-card', el.
 ancientsContainer.append(...bossCards)
 
 let currentBoss;
+
+function updateCircles() {
+    firstGreen.textContent = currentBoss.firstStage.greenCards
+    firstBrown.textContent = currentBoss.firstStage.brownCards
+    firstBlue.textContent = currentBoss.firstStage.blueCards
+    secondGreen.textContent = currentBoss.secondStage.greenCards
+    secondBrown.textContent = currentBoss.secondStage.brownCards
+    secondBlue.textContent = currentBoss.secondStage.blueCards
+    thirdGreen.textContent = currentBoss.thirdStage.greenCards
+    thirdBrown.textContent = currentBoss.thirdStage.brownCards
+    thirdBlue.textContent = currentBoss.thirdStage.blueCards
+}
 
 bossCards.forEach(el => el.addEventListener('click', (e) => {
     const bossName = e.target.id
@@ -179,6 +201,7 @@ console.log(mixUp)
 mixUp.addEventListener('click', (e) => {
     mixUp.classList.add('hide-mix-up')
     cardContainer.classList.remove('hide-card-container')
+    stageContainer.classList.remove('hide-stage-container')
 
     const finalCardsArr = finalPack.map((el, id) => {
         const front = createHtmlEl('div', 'front-side', el.cardFace) 
@@ -194,12 +217,15 @@ mixUp.addEventListener('click', (e) => {
                 cardContainer.style.zIndex = id
                 back.classList.toggle('hide-backside')
                 front.classList.toggle('show-front-side')
+                console.log(e);
             })
 
         return cardContainer
     }).reverse()
  console.log(finalCardsArr)
     cardContainer.append(...finalCardsArr)
+
+    updateCircles()
 
 //     [backside, frontSide].forEach(el => el.addEventListener('click', (e) => {
 //     backside.classList.toggle('hide-backside')
