@@ -116,11 +116,15 @@ body {
 }
 
 .front-side {
-    background-color: aqua;
+    /* background-color: aqua; */
     transform: rotateY(-180deg);
     position: absolute;
     z-index: 1;
     transition: 1s;
+    background-image: url(http://localhost:9000/608e0ae….png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .hide-backside {
