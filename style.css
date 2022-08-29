@@ -15,7 +15,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 20px;
-    padding-top: 10px;
+    padding-top: 50px;
 }
 
 .ancient-card {
@@ -32,7 +32,7 @@ body {
 
 .bottom-container {
     display: flex;
-    padding-top: 40px;
+    padding-top: 50px;
 }
 
 .dificulties-container {
@@ -44,12 +44,19 @@ body {
 .dificult-text{
     text-align: center;
     color: #D25B01;
+    font-family: Rubik Marker Hatch, sans-serif;
+    font-size: 21px;
+
 }
 
 .didificult{
-    width: 150px;
-    height: 30px;
+    width: 212px;
+    height: 35px;
+    background-color: #F1EBD8;
+    font-family: Rubik Marker Hatch, sans-serif;
+    font-size: 21px;
 }
+
 .chose-didificult {
     border: 2px solid #5B1C02;
     transform: scale(1.1);
@@ -66,14 +73,17 @@ body {
 }
 
 .mix-up {
-    height: 30px;
-    width: 200px;
+    height: 35px;
+    width: 250px;
     align-content: center;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     z-index: 3;
+    background-color: #F1EBD8;
+    font-family: Rubik Marker Hatch, sans-serif;
+    font-size: 21px;
 }
 
 .hide-mix-up {
@@ -95,7 +105,7 @@ body {
 .cardWrapperOpen {
      transform: translateX(210px);
      transition: 1s;
-     
+     margin: 0 0px 0 40px;
 }
 
 .hide-card-container {
@@ -103,8 +113,8 @@ body {
 }
 
 .card {
-    height: 350px;
-    width: 210px;
+    height: 340px;
+    width: 230px;
 }
 
 .backside {
@@ -157,7 +167,8 @@ body {
 .stage-text {
     text-align: center;
     color: #D25B01;
-
+    font-family: Rubik Marker Hatch, sans-serif;
+    font-size: 21px;
 }
 
 .circle-counter {
@@ -171,6 +182,9 @@ body {
     border-radius: 50%;
     height: 30px;
     width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .greenCircle {

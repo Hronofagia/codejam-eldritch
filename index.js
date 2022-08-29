@@ -27,9 +27,16 @@ const thirdGreen = document.getElementById('third-green')
 const thirdBrown = document.getElementById('third-brown')
 const thirdBlue = document.getElementById('third-blue')
 
-
-
+let currentStage = 'firstStage'
 let finalPack = []
+let currentBoss;
+let currentDificult;
+let isGameStarted = false
+let finalCardsArr = []
+
+
+
+
 
 function createHtmlEl(tagName, className, background, id) {
     const element = document.createElement(tagName)
@@ -42,7 +49,7 @@ function createHtmlEl(tagName, className, background, id) {
 const bossCards = ancientsData.map(el => createHtmlEl('div', 'ancient-card', el.cardFace, el.id))
 ancientsContainer.append(...bossCards)
 
-let currentBoss;
+
 
 function updateCircles() {
     firstGreen.textContent = currentBoss.firstStage.greenCards
@@ -56,13 +63,23 @@ function updateCircles() {
     thirdBlue.textContent = currentBoss.thirdStage.blueCards
 }
 
+
+
 bossCards.forEach(el => el.addEventListener('click', (e) => {
     const bossName = e.target.id
-    currentBoss = ancientsData.find(function (boss) {
+    currentBoss = JSON.parse(JSON.stringify(ancientsData.find(function (boss) {
         return boss.id === bossName
-    })
+    })))
     cardFrame(e.target)
     hideDificulties.classList.remove('hide-dificulties-container')
+
+    mixUp.classList.add('hide-mix-up')
+    stageContainer.classList.add('hide-stage-container');
+    cardContainer.classList.add('hide-card-container');
+
+    [veryEasy, easy, normal, hard, veryHard].forEach(el => {
+        el.classList.remove('chose-didificult')
+    })
 }))
 
 function cardFrame(activeElement) {
@@ -72,15 +89,27 @@ function cardFrame(activeElement) {
     })
 }
 
-let currentDificult;
+
 
 [veryEasy, easy, normal, hard, veryHard].forEach((el, idx, arr) => el.addEventListener('click', (e) => {
     currentDificult = e.target.id
     arr.forEach(el => el.classList.remove('chose-didificult'))
     
+    isGameStarted && (cardContainer.replaceChildren())
+
+    if (isGameStarted) {
+        console.log(isGameStarted);
+        currentBoss = JSON.parse(JSON.stringify(ancientsData.find(function (boss) {
+        return boss.id === currentBoss.id
+    })))}
+
+    isGameStarted && (currentStage = 'firstStage')
+    updateCircles()
+
     e.target.classList.add('chose-didificult')
     createFirstPack()
     mixUp.classList.remove('hide-mix-up')
+
 }))
 
 function createFirstPack() {
@@ -199,7 +228,11 @@ mixUp.addEventListener('click', (e) => {
     cardContainer.classList.remove('hide-card-container')
     stageContainer.classList.remove('hide-stage-container')
 
-    const finalCardsArr = finalPack.map((el, id) => {
+    isGameStarted = true
+
+    
+
+    finalCardsArr = finalPack.map((el, id) => {
         console.log(el);
         const front = createHtmlEl('div', 'front-side', el.cardFace) 
         front.classList.add('card')
@@ -227,7 +260,7 @@ mixUp.addEventListener('click', (e) => {
 }
 )
 
-let currentStage = 'firstStage'
+
 
 const checkCard = (color) => {
     console.log(currentBoss)
@@ -247,6 +280,7 @@ const checkCard = (color) => {
         console.log(currentStage)
     }
     console.log(currentBoss)
+    console.log(ancientsData);
     updateCircles()
 }
 
