@@ -30,7 +30,6 @@ const thirdBlue = document.getElementById('third-blue')
 
 
 let finalPack = []
-let gameStarted = false
 
 function createHtmlEl(tagName, className, background, id) {
     const element = document.createElement(tagName)
@@ -196,7 +195,6 @@ function takeFourthCase(cardColor) {
 }
 
 mixUp.addEventListener('click', (e) => {
-    
     mixUp.classList.add('hide-mix-up')
     cardContainer.classList.remove('hide-card-container')
     stageContainer.classList.remove('hide-stage-container')
@@ -239,7 +237,6 @@ const checkCard = (color) => {
     console.log('+', currentFirstStageCount)
     if (currentFirstStageCount > 0) {
     currentBoss[currentStage][`${color}Cards`] -= 1
-    console.log(currentStage)
     } else if (currentSecondStageCount > 0) {
         currentStage = 'secondStage'
         currentBoss[currentStage][`${color}Cards`] -= 1
