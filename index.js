@@ -30,6 +30,7 @@ const thirdBlue = document.getElementById('third-blue')
 
 
 let finalPack = []
+let gameStarted = false
 
 function createHtmlEl(tagName, className, background, id) {
     const element = document.createElement(tagName)
@@ -127,8 +128,6 @@ function createFirstPack() {
     const firstStagePack =  getStagePack(randomBluePack, randomBrownPack, randomGreenPack, currentBoss.firstStage)
 }
 
-
-
 function getRandomPack(arr) {
     let newArr = [...arr]
         let j, temp;
@@ -196,17 +195,17 @@ function takeFourthCase(cardColor) {
     }))
 }
 
-
-console.log(mixUp)
 mixUp.addEventListener('click', (e) => {
+    
     mixUp.classList.add('hide-mix-up')
     cardContainer.classList.remove('hide-card-container')
     stageContainer.classList.remove('hide-stage-container')
 
     const finalCardsArr = finalPack.map((el, id) => {
+        console.log(el);
         const front = createHtmlEl('div', 'front-side', el.cardFace) 
         front.classList.add('card')
-        const back = createHtmlEl('div', 'backside', backSide)
+        const back = createHtmlEl('div', 'backside', backSide, el.color)
         back.classList.add('card')
         const cardContainer = createHtmlEl('div', 'cardWrapper', null, id)
         cardContainer.style.zIndex = 15 - id
@@ -217,7 +216,8 @@ mixUp.addEventListener('click', (e) => {
                 cardContainer.style.zIndex = id
                 back.classList.toggle('hide-backside')
                 front.classList.toggle('show-front-side')
-                console.log(e);
+                console.log(e.target.id);
+                checkCard(e.target.id)
             })
 
         return cardContainer
@@ -226,15 +226,32 @@ mixUp.addEventListener('click', (e) => {
     cardContainer.append(...finalCardsArr)
 
     updateCircles()
-
-//     [backside, frontSide].forEach(el => el.addEventListener('click', (e) => {
-//     backside.classList.toggle('hide-backside')
-//     frontSide.classList.toggle('show-front-side')
-// }
-// ))
-    
 }
 )
+
+let currentStage = 'firstStage'
+
+const checkCard = (color) => {
+    console.log(currentBoss)
+    let  currentFirstStageCount = currentBoss.firstStage.greenCards + currentBoss.firstStage.brownCards + currentBoss.firstStage.blueCards
+    let  currentSecondStageCount = currentBoss.secondStage.greenCards + currentBoss.secondStage.brownCards + currentBoss.secondStage.blueCards
+    let  currentThirdStageCount = currentBoss.thirdStage.greenCards + currentBoss.thirdStage.brownCards + currentBoss.thirdStage.blueCards
+    console.log('+', currentFirstStageCount)
+    if (currentFirstStageCount > 0) {
+    currentBoss[currentStage][`${color}Cards`] -= 1
+    console.log(currentStage)
+    } else if (currentSecondStageCount > 0) {
+        currentStage = 'secondStage'
+        currentBoss[currentStage][`${color}Cards`] -= 1
+        console.log(currentStage)
+    } else if (currentThirdStageCount > 0) {
+        currentStage = 'thirdStage'
+        currentBoss[currentStage][`${color}Cards`] -= 1
+        console.log(currentStage)
+    }
+    console.log(currentBoss)
+    updateCircles()
+}
 
 function takeFifthCase(cardColor, bossCardsCount) {
     let hardCards = cards[cardColor].filter(el=> {
@@ -259,11 +276,6 @@ function takeFifthCase(cardColor, bossCardsCount) {
         return hardCards
     }
 }
-
-
-
-
-
 
 function getStagePack(randomBluePack, randomBrownPack, randomGreenPack, currentBossStage) {
     let fitrstStageGreenCardsCount = currentBoss.firstStage.greenCards
@@ -299,10 +311,6 @@ function getStagePack(randomBluePack, randomBrownPack, randomGreenPack, currentB
     let randomFirstStageCards = getRandomPack(firstStageCards)
     let randomSecondStageCards = getRandomPack(secondStageCards)
     let randomThirdStageCards = getRandomPack(thirdStageCards)
-
-    // console.log(randomFirstStageCards)
-    // console.log(randomSecondStageCards)
-    // console.log(randomThirdStageCards)
 
     finalPack = randomFirstStageCards.concat(randomSecondStageCards, randomThirdStageCards)
     console.log(finalPack)
